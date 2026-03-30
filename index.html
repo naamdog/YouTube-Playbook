@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEFL Heaven YouTube Content Playbook</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+–ink: #1a1a18;
+–paper: #f5f0e8;
+–gold: #c9922a;
+–gold-light: #e8c97a;
+–red: #c0392b;
+–rule: #d4c9b0;
+–muted: #7a6f5d;
+–highlight-bg: #fff8e7;
+–code-bg: #ede8dc;
+}
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+background: var(–paper);
+color: var(–ink);
+font-family: ‘Lato’, sans-serif;
+font-weight: 300;
+line-height: 1.75;
+font-size: 16px;
+}
+
+/* HEADER */
+.masthead {
+border-bottom: 3px double var(–ink);
+padding: 48px 0 32px;
+text-align: center;
+position: relative;
+background: var(–ink);
+color: var(–paper);
+}
+.masthead::before {
+content: ‘’;
+display: block;
+height: 3px;
+background: var(–gold);
+margin-bottom: 0;
+}
+.masthead-eyebrow {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–gold-light);
+margin-bottom: 16px;
+}
+.masthead h1 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(2rem, 5vw, 3.6rem);
+font-weight: 900;
+line-height: 1.1;
+letter-spacing: -0.01em;
+color: var(–paper);
+max-width: 680px;
+margin: 0 auto 16px;
+}
+.masthead-rule {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+margin: 20px auto 0;
+max-width: 300px;
+}
+.masthead-rule span { font-size: 18px; color: var(–gold); }
+.masthead-rule hr { flex: 1; border: none; border-top: 1px solid var(–gold); opacity: 0.5; }
+
+/* LAYOUT */
+.container {
+max-width: 760px;
+margin: 0 auto;
+padding: 0 24px;
+}
+
+/* THE DOCTRINE BOX */
+.doctrine {
+background: var(–ink);
+color: var(–paper);
+padding: 36px 40px;
+margin: 48px 0;
+border-left: 6px solid var(–gold);
+position: relative;
+}
+.doctrine::before {
+content: ‘§’;
+font-family: ‘Playfair Display’, serif;
+font-size: 64px;
+color: var(–gold);
+opacity: 0.2;
+position: absolute;
+top: 12px;
+right: 24px;
+line-height: 1;
+}
+.doctrine p {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.25rem;
+line-height: 1.6;
+font-style: italic;
+}
+.doctrine strong {
+font-style: normal;
+color: var(–gold-light);
+}
+
+/* SECTION HEADERS */
+.section-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 8px;
+display: block;
+}
+h2 {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.9rem;
+font-weight: 700;
+line-height: 1.2;
+margin-bottom: 20px;
+padding-bottom: 12px;
+border-bottom: 2px solid var(–rule);
+margin-top: 52px;
+}
+h3 {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.2rem;
+font-weight: 700;
+margin-top: 32px;
+margin-bottom: 10px;
+}
+
+p { margin-bottom: 16px; }
+
+/* TWO COLUMN SPLIT */
+.split {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 24px;
+margin: 28px 0;
+}
+.split-box {
+padding: 24px;
+border: 1px solid var(–rule);
+background: #fff;
+}
+.split-box.youtube { border-top: 4px solid var(–red); }
+.split-box.email { border-top: 4px solid var(–gold); }
+.split-box h4 {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+margin-bottom: 14px;
+}
+.split-box.youtube h4 { color: var(–red); }
+.split-box.email h4 { color: var(–gold); }
+.split-box ul { list-style: none; padding: 0; }
+.split-box ul li {
+padding: 5px 0;
+border-bottom: 1px solid var(–rule);
+font-size: 0.9rem;
+}
+.split-box ul li:last-child { border-bottom: none; }
+
+@media (max-width: 580px) {
+.split { grid-template-columns: 1fr; }
+}
+
+/* WORKFLOW STEPS */
+.steps { margin: 28px 0; }
+.step {
+display: grid;
+grid-template-columns: 52px 1fr;
+gap: 20px;
+margin-bottom: 28px;
+align-items: start;
+}
+.step-num {
+font-family: ‘Playfair Display’, serif;
+font-size: 2.4rem;
+font-weight: 900;
+color: var(–rule);
+line-height: 1;
+text-align: right;
+}
+.step-body h4 {
+font-family: ‘Lato’, sans-serif;
+font-weight: 700;
+font-size: 1rem;
+margin-bottom: 6px;
+color: var(–ink);
+}
+.step-body p { font-size: 0.92rem; margin-bottom: 0; color: #3a3530; }
+
+/* DO/DON’T */
+.dont-list, .do-list {
+list-style: none;
+padding: 0;
+margin: 12px 0 20px;
+}
+.dont-list li, .do-list li {
+padding: 6px 0 6px 28px;
+position: relative;
+font-size: 0.93rem;
+border-bottom: 1px dotted var(–rule);
+}
+.dont-list li:last-child, .do-list li:last-child { border-bottom: none; }
+.dont-list li::before {
+content: ‘✕’;
+position: absolute;
+left: 0;
+color: var(–red);
+font-weight: 700;
+font-size: 0.8rem;
+top: 8px;
+}
+.do-list li::before {
+content: ‘✓’;
+position: absolute;
+left: 0;
+color: #27ae60;
+font-weight: 700;
+font-size: 0.8rem;
+top: 8px;
+}
+
+/* BUCKET CARDS */
+.bucket {
+border: 1px solid var(–rule);
+background: #fff;
+margin-bottom: 24px;
+overflow: hidden;
+}
+.bucket-header {
+background: var(–ink);
+color: var(–paper);
+padding: 16px 24px;
+display: flex;
+align-items: baseline;
+gap: 16px;
+}
+.bucket-num {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+color: var(–gold-light);
+letter-spacing: 0.15em;
+}
+.bucket-header h3 {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.1rem;
+font-weight: 700;
+color: var(–paper);
+margin: 0;
+}
+.bucket-body { padding: 20px 24px; }
+.bucket-meta {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 14px;
+margin-bottom: 6px;
+}
+.bucket-fear {
+background: var(–highlight-bg);
+border-left: 3px solid var(–gold);
+padding: 10px 14px;
+font-style: italic;
+font-size: 0.9rem;
+color: #5a4a2a;
+margin-top: 12px;
+}
+.bucket-examples { list-style: none; padding: 0; }
+.bucket-examples li {
+padding: 5px 0;
+font-size: 0.88rem;
+border-bottom: 1px dotted var(–rule);
+color: #444;
+}
+.bucket-examples li:last-child { border-bottom: none; }
+.bucket-examples li::before { content: ’→ ’; color: var(–gold); font-weight: 700; }
+
+/* CHECKLIST */
+.checklist {
+border: 1px solid var(–rule);
+background: #fff;
+padding: 28px;
+margin: 28px 0;
+}
+.checklist-item {
+display: grid;
+grid-template-columns: 120px 1fr auto;
+gap: 16px;
+align-items: center;
+padding: 12px 0;
+border-bottom: 1px solid var(–rule);
+font-size: 0.9rem;
+}
+.checklist-item:last-child { border-bottom: none; }
+.checklist-label { font-weight: 700; font-size: 0.85rem; }
+.checklist-desc { color: var(–muted); font-size: 0.85rem; }
+.score-dots {
+display: flex;
+gap: 4px;
+}
+.dot {
+width: 10px; height: 10px;
+border-radius: 50%;
+border: 1.5px solid var(–gold);
+background: transparent;
+}
+
+/* EXAMPLES */
+.example-card {
+border: 1px solid var(–rule);
+background: #fff;
+margin-bottom: 24px;
+}
+.example-header {
+padding: 16px 24px;
+border-bottom: 1px solid var(–rule);
+display: flex;
+gap: 16px;
+align-items: center;
+}
+.example-tag {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+background: var(–ink);
+color: var(–gold-light);
+padding: 3px 8px;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+white-space: nowrap;
+}
+.example-header h4 {
+font-family: ‘Playfair Display’, serif;
+font-size: 1rem;
+font-style: italic;
+}
+.example-body { padding: 20px 24px; }
+.example-body p { font-size: 0.9rem; margin-bottom: 10px; }
+.example-transfer {
+margin-top: 14px;
+padding: 12px 16px;
+background: var(–ink);
+color: var(–gold-light);
+font-family: ‘Playfair Display’, serif;
+font-style: italic;
+font-size: 0.92rem;
+border-left: 3px solid var(–gold);
+}
+.example-transfer::before {
+content: ’EMAIL HANDOFF → ’;
+font-family: ‘IBM Plex Mono’, monospace;
+font-style: normal;
+font-size: 9px;
+letter-spacing: 0.2em;
+display: block;
+color: var(–muted);
+margin-bottom: 6px;
+}
+
+/* WEEKLY OS */
+.week-grid {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 0;
+border: 1px solid var(–rule);
+margin: 28px 0;
+background: #fff;
+}
+.day-col {
+border-right: 1px solid var(–rule);
+overflow: hidden;
+}
+.day-col:last-child { border-right: none; }
+.day-header {
+background: var(–ink);
+color: var(–paper);
+padding: 10px 12px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+text-align: center;
+color: var(–gold-light);
+}
+.day-body { padding: 14px 12px; }
+.day-body p {
+font-size: 0.78rem;
+margin-bottom: 6px;
+color: #444;
+line-height: 1.5;
+}
+.day-body strong { color: var(–ink); font-weight: 700; display: block; margin-bottom: 4px; }
+
+@media (max-width: 620px) {
+.week-grid { grid-template-columns: 1fr; }
+.day-col { border-right: none; border-bottom: 1px solid var(–rule); }
+.day-col:last-child { border-bottom: none; }
+.checklist-item { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* BRIEF TEMPLATE */
+.brief {
+border: 2px solid var(–ink);
+background: #fff;
+padding: 32px;
+margin: 32px 0;
+position: relative;
+}
+.brief::before {
+content: ‘VIDEO BRIEF TEMPLATE’;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 0.3em;
+background: var(–ink);
+color: var(–gold-light);
+padding: 4px 10px;
+position: absolute;
+top: -1px;
+left: 24px;
+transform: translateY(-50%);
+}
+.brief-row {
+display: grid;
+grid-template-columns: 180px 1fr;
+gap: 12px;
+padding: 10px 0;
+border-bottom: 1px solid var(–rule);
+font-size: 0.88rem;
+}
+.brief-row:last-child { border-bottom: none; }
+.brief-key {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 0.78rem;
+color: var(–muted);
+padding-top: 2px;
+}
+.brief-val { color: var(–ink); font-style: italic; }
+
+/* CLOSING */
+.closing {
+background: var(–ink);
+color: var(–paper);
+text-align: center;
+padding: 52px 32px;
+margin-top: 64px;
+border-top: 4px solid var(–gold);
+}
+.closing blockquote {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(1.2rem, 3vw, 1.8rem);
+font-style: italic;
+line-height: 1.5;
+max-width: 580px;
+margin: 0 auto 20px;
+color: var(–gold-light);
+}
+.closing p {
+font-size: 0.85rem;
+color: var(–muted);
+font-family: ‘IBM Plex Mono’, monospace;
+letter-spacing: 0.1em;
+margin: 0;
+}
+
+/* DIVIDER */
+.ornamental-divider {
+text-align: center;
+color: var(–gold);
+font-size: 1.2rem;
+margin: 40px 0;
+letter-spacing: 0.4em;
+opacity: 0.6;
+}
+
+/* RATING BADGE */
+.rating-box {
+background: var(–ink);
+color: var(–paper);
+padding: 20px 28px;
+display: inline-flex;
+align-items: center;
+gap: 20px;
+margin: 32px 0;
+}
+.rating-num {
+font-family: ‘Playfair Display’, serif;
+font-size: 3rem;
+font-weight: 900;
+color: var(–gold);
+line-height: 1;
+}
+.rating-label { font-size: 0.8rem; font-family: ‘IBM Plex Mono’, monospace; color: var(–muted); letter-spacing: 0.1em; }
+</style>
+
+</head>
+<body>
+
+<div class="masthead">
+  <div class="container">
+    <p class="masthead-eyebrow">Strategic Content System</p>
+    <h1>TEFL Heaven YouTube Playbook</h1>
+    <div class="masthead-rule">
+      <hr><span>✦</span><hr>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- DOCTRINE -->
+
+  <div class="doctrine">
+    <p>YouTube answers the question <strong>they type.</strong><br>Email answers the fear <strong>they feel.</strong><br>These are never the same question.</p>
+  </div>
+
+  <!-- THE CORE INSIGHT -->
+
+<span class="section-label">The Core Insight</span>
+
+  <h2>Why the Channel/Email Split Matters</h2>
+
+  <p>Your audience doesn't search "I'm afraid I'm too old and have wasted my chance." They search "teach English abroad at 40." The fear is the engine of the search — but they've translated it into a safe, practical question before they ever hit the keyboard.</p>
+
+  <p>That means YouTube has a real job: answer the practical question competently while quietly dismantling the fear underneath it. Then when they join the list, email earns the right to talk to that fear directly — because now they've self-selected. They've raised their hand. The emotional register can shift.</p>
+
+  <div class="split">
+    <div class="split-box youtube">
+      <h4>📺 YouTube Does This</h4>
+      <ul>
+        <li>Answers the practical question</li>
+        <li>Reduces uncertainty</li>
+        <li>Shows the process is real</li>
+        <li>Delivers proof (alumni, footage, data)</li>
+        <li>Makes the next step feel safe</li>
+        <li>Earns the email opt-in</li>
+      </ul>
+    </div>
+    <div class="split-box email">
+      <h4>📧 Email Does This</h4>
+      <ul>
+        <li>Names the fear directly</li>
+        <li>Addresses delay and hesitation</li>
+        <li>Challenges the false beliefs</li>
+        <li>Talks about identity and timing</li>
+        <li>Deepens trust after interest exists</li>
+        <li>Creates movement toward decision</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ornamental-divider">— ✦ —</div>
+
+  <!-- THE WORKFLOW -->
+
+<span class="section-label">Before You Film Anything</span>
+
+  <h2>The Pre-Production Workflow</h2>
+
+  <p>The biggest mistake in content strategy is starting with what you want to say rather than what your audience is already looking for. This workflow inverts that.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h4>Start with a searchable topic, not a theme</h4>
+        <p>A <em>theme</em> is "courage to take the leap." A <em>searchable topic</em> is "teaching English in Japan requirements 2026." Start with the topic. The theme will live inside the video, not in the title.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h4>Check YouTube Studio before writing a script</h4>
+        <p>Look at: Search Terms report (what phrases already bring people to your channel), the Trends tab (top searches among your audience in the last 28 days), and top performers by watch time, views, and subscriber gain. These tell you what the algorithm already trusts you to answer.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h4>Search YouTube manually for the phrase</h4>
+        <p>Note the autosuggestions, count the recent results, assess competition quality. You want strong demand with weak or outdated competition — or decent demand where TEFL Heaven has a clear angle that doesn't exist yet.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h4>Sanity-check with Google Trends</h4>
+        <p>Useful for broad seasonality and comparing topic interest. Switch to "YouTube Search" in Trends for entertainment or search-culture topics. Don't over-rely on it — your own Studio data is more relevant to your actual audience.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <h4>Ask the threshold question</h4>
+        <p>Is this a real search topic, a decision-stage question, or something that answers a repeated question from real leads? It must be at least one of these. If it's only "interesting," it doesn't earn production time.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <h4>Build the title around the search phrase, the script around the hidden fear</h4>
+        <p>The title gets you found. The script earns trust. Both matter — but they're doing different jobs.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Topics to start with</h3>
+  <ul class="do-list">
+    <li>A country (Thailand, Japan, Vietnam, Mexico)</li>
+    <li>A requirement (degree, TEFL cert, experience, age)</li>
+    <li>A process question (how to apply, what happens after)</li>
+    <li>A comparison (Thailand vs Vietnam, online vs in-person TEFL)</li>
+    <li>A salary or cost-of-living question</li>
+    <li>A legitimacy question (is this real? is TEFL worth it?)</li>
+  </ul>
+
+  <h3>Topics to save for email</h3>
+  <ul class="dont-list">
+    <li>Fear — as a frame or a title</li>
+    <li>Mindset, courage, self-belief</li>
+    <li>Identity and life regret</li>
+    <li>Hesitation and excuses</li>
+  </ul>
+
+  <div class="ornamental-divider">— ✦ —</div>
+
+  <!-- VALIDATION CHECKLIST -->
+
+<span class="section-label">Topic Validation</span>
+
+  <h2>The Five-Point Checklist</h2>
+
+  <p>Score each topic 1–5 on each criterion. Make the video if it scores high on at least four of five.</p>
+
+  <div class="checklist">
+    <div class="checklist-item">
+      <span class="checklist-label">Searchability</span>
+      <span class="checklist-desc">Would a real person type this phrase into YouTube's search bar?</span>
+      <div class="score-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+    <div class="checklist-item">
+      <span class="checklist-label">Relevance</span>
+      <span class="checklist-desc">Does this matter to someone who might actually apply to TEFL Heaven?</span>
+      <div class="score-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+    <div class="checklist-item">
+      <span class="checklist-label">Decision Impact</span>
+      <span class="checklist-desc">Could this video move someone closer to booking?</span>
+      <div class="score-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+    <div class="checklist-item">
+      <span class="checklist-label">Proof Strength</span>
+      <span class="checklist-desc">Can TEFL Heaven support this with real examples, alumni, footage, or data?</span>
+      <div class="score-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+    <div class="checklist-item">
+      <span class="checklist-label">Series Potential</span>
+      <span class="checklist-desc">Could this become 3–5 related videos that compound over time?</span>
+      <div class="score-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+  </div>
+
+  <div class="ornamental-divider">— ✦ —</div>
+
+  <!-- THE FIVE BUCKETS -->
+
+<span class="section-label">Content Architecture</span>
+
+  <h2>The Five Content Buckets</h2>
+
+  <p>Every TEFL Heaven video belongs to one of these buckets. Each bucket targets a different moment in the decision journey — and each has a consistent hidden fear underneath the practical surface.</p>
+
+  <div class="bucket">
+    <div class="bucket-header">
+      <span class="bucket-num">BUCKET 01</span>
+      <h3>Requirements & Qualifications</h3>
+    </div>
+    <div class="bucket-body">
+      <p><strong>When to use it:</strong> When someone wants to know if they qualify — or has already decided they don't.</p>
+      <p class="bucket-meta">Example titles</p>
+      <ul class="bucket-examples">
+        <li>How to Teach English in Thailand Without Experience</li>
+        <li>Do You Need a Degree to Teach English Abroad?</li>
+        <li>Teach English in Japan: Requirements for 2026</li>
+        <li>Can You Teach English Abroad at 40?</li>
+      </ul>
+      <div class="bucket-fear">Hidden fear: "I'm already disqualified." / "This chance has passed me by before I even tried."</div>
+    </div>
+  </div>
+
+  <div class="bucket">
+    <div class="bucket-header">
+      <span class="bucket-num">BUCKET 02</span>
+      <h3>Salary & Cost of Living</h3>
+    </div>
+    <div class="bucket-body">
+      <p><strong>When to use it:</strong> When someone is trying to establish whether the idea is financially responsible or reckless.</p>
+      <p class="bucket-meta">Example titles</p>
+      <ul class="bucket-examples">
+        <li>Teach English in Thailand Salary vs Cost of Living</li>
+        <li>Can You Actually Save Money Teaching English Abroad?</li>
+        <li>Real Monthly Budget: English Teacher in Prague</li>
+        <li>Is Teaching English in Mexico Financially Worth It?</li>
+      </ul>
+      <div class="bucket-fear">Hidden fear: "I'll run out of money and have to come home humiliated." / "This is irresponsible and I know it."</div>
+    </div>
+  </div>
+
+  <div class="bucket">
+    <div class="bucket-header">
+      <span class="bucket-num">BUCKET 03</span>
+      <h3>Country Choice & Comparison</h3>
+    </div>
+    <div class="bucket-body">
+      <p><strong>When to use it:</strong> When someone has committed to the idea in principle but is paralysed by where to go.</p>
+      <p class="bucket-meta">Example titles</p>
+      <ul class="bucket-examples">
+        <li>Thailand vs Vietnam for First-Time English Teachers</li>
+        <li>Best Countries to Teach Abroad If You're Over 30</li>
+        <li>Japan vs South Korea: Which Is Better With No Experience?</li>
+        <li>Cheapest Countries to Teach English Abroad in 2026</li>
+      </ul>
+      <div class="bucket-fear">Hidden fear: "I'll make the wrong choice and waste the whole experience." / "There's a right answer and I won't find it."</div>
+    </div>
+  </div>
+
+  <div class="bucket">
+    <div class="bucket-header">
+      <span class="bucket-num">BUCKET 04</span>
+      <h3>Process & What Happens Next</h3>
+    </div>
+    <div class="bucket-body">
+      <p><strong>When to use it:</strong> When someone needs certainty that there's a real, guided path — not chaos.</p>
+      <p class="bucket-meta">Example titles</p>
+      <ul class="bucket-examples">
+        <li>What Happens After You Apply to TEFL Heaven?</li>
+        <li>How TEFL Heaven's Guaranteed Placement Actually Works</li>
+        <li>Timeline: From Application to First Day Teaching Abroad</li>
+        <li>What Documents Do You Need to Teach English Abroad?</li>
+      </ul>
+      <div class="bucket-fear">Hidden fear: "Is this legitimate?" / "Will I be abandoned once I've paid?" / "What actually happens next?"</div>
+    </div>
+  </div>
+
+  <div class="bucket">
+    <div class="bucket-header">
+      <span class="bucket-num">BUCKET 05</span>
+      <h3>Proof & Real-Life Stories</h3>
+    </div>
+    <div class="bucket-body">
+      <p><strong>When to use it:</strong> When someone is interested but can't picture themselves doing it — they need a mirror, not more information.</p>
+      <p class="bucket-meta">Example titles</p>
+      <ul class="bucket-examples">
+        <li>A Day in the Life Teaching English in Thailand</li>
+        <li>From Office Job to Cambodia: One Teacher's Story</li>
+        <li>What Our In-Person TEFL Course Actually Looks Like</li>
+        <li>She Applied at 44 — Watch What Happened</li>
+      </ul>
+      <div class="bucket-fear">Hidden fear: "I can't picture someone like me actually doing this." / "These are other kinds of people — not me."</div>
+    </div>
+  </div>
+
+  <div class="ornamental-divider">— ✦ —</div>
+
+  <!-- EXAMPLES -->
+
+<span class="section-label">Applied Examples</span>
+
+  <h2>Four Videos, Fully Mapped</h2>
+
+  <div class="example-card">
+    <div class="example-header">
+      <span class="example-tag">Bucket 01 — Requirements</span>
+      <h4>Teach English in Thailand Without Experience</h4>
+    </div>
+    <div class="example-body">
+      <p><strong>What they're really asking:</strong> "Can someone exactly like me — unqualified, uncertain, late to this — actually do this?"</p>
+      <p><strong>What the video must include:</strong> Whether experience is genuinely required, what schools in Thailand actually want, how TEFL training closes the gap, what beginners typically struggle with, and honest expectations for the first few months.</p>
+      <p><strong>Why it works:</strong> It's a high-intent search (someone who already wants to go), and it answers the disqualifying question before they talk themselves out of enquiring.</p>
+      <div class="example-transfer">"Most people don't hesitate because they lack experience. They hesitate because they don't trust themselves yet — and no amount of qualifications fixes that."</div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <div class="example-header">
+      <span class="example-tag">Bucket 02 — Salary</span>
+      <h4>Thailand Salary vs Cost of Living for English Teachers</h4>
+    </div>
+    <div class="example-body">
+      <p><strong>What they're really asking:</strong> "Will I be okay, or will this embarrass me financially?"</p>
+      <p><strong>What the video must include:</strong> Realistic salary ranges by city, an honest example monthly budget, what changes the maths (school type, lifestyle, savings goals), and trade-offs presented without cheerleading.</p>
+      <p><strong>Why it works:</strong> Clear search intent, high stakes emotionally, and TEFL Heaven can provide real data from real placements — which is a competitive advantage most YouTube content in this niche doesn't have.</p>
+      <div class="example-transfer">"Money is rarely the actual fear. For most people, money becomes the socially acceptable reason not to go — the one you can say out loud without admitting what you're really scared of."</div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <div class="example-header">
+      <span class="example-tag">Bucket 04 — Process</span>
+      <h4>What Happens After You Apply to TEFL Heaven?</h4>
+    </div>
+    <div class="example-body">
+      <p><strong>What they're really asking:</strong> "Is this a smooth, supported process or am I walking into confusion with money on the line?"</p>
+      <p><strong>What the video must include:</strong> Every step from application to first day — interview, placement, training timeline, visa support, what the candidate does vs what TEFL Heaven does. Name the specific people or teams involved. Remove the fog.</p>
+      <p><strong>Why it works:</strong> Decision-stage search. Someone typing this is close. They need certainty, not inspiration.</p>
+      <div class="example-transfer">"Uncertainty is the thing that makes people freeze. Not doubt, not fear — just not knowing what comes next. Clarity is what moves people."</div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <div class="example-header">
+      <span class="example-tag">Bucket 01 — Requirements (Age)</span>
+      <h4>Teaching Abroad at 40: Countries That Are Still Realistic</h4>
+    </div>
+    <div class="example-body">
+      <p><strong>What they're really asking:</strong> "Is this dream still available to me, or did I wait too long?"</p>
+      <p><strong>What the video must include:</strong> Honest country-by-country breakdown (where age matters, where it doesn't), what factors make someone more employable regardless of age, and what TEFL Heaven actually sees from applicants in this demographic.</p>
+      <p><strong>Why it works:</strong> Extremely specific, high emotional charge, but framed as a practical search — "which countries." That framing gets the click without triggering the self-protective filter that shuts people down.</p>
+      <div class="example-transfer">"Sometimes the real fear isn't teaching abroad. It's accepting that you still want a different life — and that wanting it means you have to do something about it."</div>
+    </div>
+  </div>
+
+  <div class="ornamental-divider">— ✦ —</div>
+
+  <!-- VIDEO BRIEF TEMPLATE -->
+
+<span class="section-label">Reusable Template</span>
+
+  <h2>The Video Brief</h2>
+
+  <p>Fill this in before scripting every video. It takes ten minutes and prevents producing content that's interesting but doesn't perform.</p>
+
+  <div class="brief">
+    <div class="brief-row">
+      <span class="brief-key">Search topic</span>
+      <span class="brief-val">e.g. Teaching Abroad at 40</span>
+    </div>
+    <div class="brief-row">
+      <span class="brief-key">Phrase variations</span>
+      <span class="brief-val">List 3–4 ways someone might search this</span>
+    </div>
+    <div class="brief-row">
+      <span class="brief-key">Why they're searching</span>
+      <span class="brief-val">The surface motivation — practical, curious, comparing</span>
+    </div>
+    <div class="brief-row">
+      <span class="brief-key">What they're afraid of</span>
+      <span class="brief-val">The real reason. Say it plainly. This goes in the script, not the title.</span>
+    </div>
+    <div class="brief-row">
+      <span class="brief-key">What proof we have</span>
+      <span class="brief-val">Alumni stories, placement data, footage, instructor insight</span>
+    </div>
+    <div class="brief-row">
+      <span class="brief-key">Title options</span>
+      <span class="brief-val">Write 3. The first is usually too safe.</span>
+    </div>
+    <div class="brief-row">
+      <span class="brief-key">Checklist score</span>
+      <span class="brief-val">Score it against the five criteria. Only proceed at 4+/5.</span>
+    </div>
+    <div class="brief-row">
+      <span class="brief-key">Email handoff line</span>
+      <span class="brief-val">One line that speaks to the fear directly — for the follow-up sequence.</span>
+    </div>
+  </div>
+
+  <div class="ornamental-divider">— ✦ —</div>
+
+  <!-- WEEKLY OS -->
+
+<span class="section-label">Operating Rhythm</span>
+
+  <h2>The Weekly System</h2>
+
+  <div class="week-grid">
+    <div class="day-col">
+      <div class="day-header">Monday</div>
+      <div class="day-body">
+        <strong>Review</strong>
+        <p>Top videos by watch time, subs gained, and leads. YouTube search terms report. Trends tab. Sales questions from the week. Email replies.</p>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">Tuesday</div>
+      <div class="day-body">
+        <strong>Choose Topics</strong>
+        <p>Pick 3 candidates: one search-first, one decision-stage, one proof/story. Run each through the five-point checklist.</p>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">Wednesday</div>
+      <div class="day-body">
+        <strong>Brief + Title</strong>
+        <p>Complete the video brief for the chosen topic. Write 3 title options. Write the email handoff line. Draft thumbnail concept.</p>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">Thursday</div>
+      <div class="day-body">
+        <strong>Film</strong>
+        <p>Script addresses: practical question → hidden fear → proof → safe next step. In that order.</p>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">Friday</div>
+      <div class="day-body">
+        <strong>Early Signals</strong>
+        <p>Check CTR, average view duration, comments, and search traffic source. Flag what's working for next Monday's review.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<!-- CLOSING -->
+
+<div class="closing">
+  <blockquote>YouTube gets them curious and clearer.<br>Email gets them honest and moving.</blockquote>
+  <p>TEFL HEAVEN · CONTENT STRATEGY · 2026</p>
+</div>
+
+</body>
+</html>
