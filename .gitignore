@@ -11,11 +11,7 @@ __pycache__/
 *.pyc
 .DS_Store
 *.local.json
+
+# python venv (local testing only)
+.venv/
 </content>
-
-# python venv (local testing only)
-.venv/
-.agents/.gitignore
-
-# python venv (local testing only)
-.venv/
