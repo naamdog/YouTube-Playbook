@@ -1,21 +1,20 @@
 {
-  "//": "Claude Code MCP server config. Copy relevant entries into your project .mcp.json or Claude Code settings. Replace ${VARS} via your .env / shell env. See ../docs/02-architecture.md.",
+  "//": "Claude Code MCP config. Copy relevant entries into your project .mcp.json (or run `claude mcp add ...`). Replace ${VARS} via your .env / shell env. See ../docs/02-architecture.md.",
   "mcpServers": {
     "blotato": {
-      "//": "Community Blotato MCP server. Exposes media-upload + post-to-social (≈9 platforms) with scheduledTime support. Confirm package/repo name and tool names against the current community server.",
-      "command": "npx",
-      "args": ["-y", "blotato-mcp"],
-      "env": {
-        "BLOTATO_API_KEY": "${BLOTATO_API_KEY}"
+      "//": "Official Blotato hosted MCP. Posts to 9 platforms with scheduledTime; ~16 tools (blotato_create_post, blotato_list_accounts, upload media, blotato_create_visual...). Requires a paid Blotato plan.",
+      "type": "http",
+      "url": "https://mcp.blotato.com/mcp",
+      "headers": {
+        "blotato-api-key": "${BLOTATO_API_KEY}"
       }
     },
     "higgsfield": {
-      "//": "Custom MCP wrapper around the Higgsfield Cloud API. Confirm exact endpoints from your dashboard, then implement (see ../scripts/generate_media.md). Or skip MCP and let Claude call the REST API via HTTP tool-use.",
-      "command": "node",
-      "args": ["scripts/higgsfield-mcp/index.js"],
-      "env": {
-        "HIGGSFIELD_API_KEY": "${HIGGSFIELD_API_KEY}",
-        "HIGGSFIELD_API_BASE": "${HIGGSFIELD_API_BASE}"
+      "//": "Official Higgsfield MCP — drives Soul (image), DoP (video), Speak, etc. using your Higgsfield credits. If the hosted form differs, fall back to the community servers (e.g. Hikhakk/higgsfield-mcp-unified) or HTTP tool-use against platform.higgsfield.ai. Confirm the current MCP URL/transport at higgsfield.ai/mcp.",
+      "type": "http",
+      "url": "https://higgsfield.ai/mcp",
+      "headers": {
+        "Authorization": "Key ${HIGGSFIELD_API_KEY_ID}:${HIGGSFIELD_API_KEY_SECRET}"
       }
     },
     "filesystem": {

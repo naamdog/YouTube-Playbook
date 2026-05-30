@@ -1,8 +1,8 @@
 # 03 — Capability Matrix (facts, limits, auth)
 
-What was established as of **2026-05**. Items flagged **⚠️ confirm** are real capabilities whose exact
-value (endpoint path, schema, price) should be confirmed from the live dashboard/docs, because those
-sources are behind login or change often. Native-platform and Claude-Code facts are well-established.
+Verified against official docs/SDKs as of **2026-05** (sources in [07-sources.md](07-sources.md)).
+A few values are flagged **⚠️** where official pages reported inconsistently or blocked automated
+fetch; verify those live at integration time.
 
 ---
 
@@ -10,17 +10,17 @@ sources are behind login or change often. Native-platform and Claude-Code facts 
 
 | Item | Status | Detail |
 |---|---|---|
-| Public REST API | ✅ | API-key auth (key from the Blotato settings page) |
-| Platforms | ✅ | ≈9: Instagram, TikTok, YouTube, Facebook, Threads, LinkedIn, X/Twitter, Pinterest, Bluesky |
-| Flow | ✅ | Typically **two-step**: host/upload media → create post |
-| Scheduling | ✅ | Future `scheduledTime` supported on create-post |
-| Media | ✅ | Upload-by-URL → Blotato-hosted URL (needs a reachable source URL) |
-| Per-platform options | ✅ | IG reels; TikTok privacy/comments/duet/stitch/disclosure; YouTube title/privacy/notify |
-| Plan required | ⚠️ confirm | Paid plan with **API access** (verify current tier/cost) |
-| Base URL / exact schema | ⚠️ confirm | Verify from Blotato docs + community MCP repos |
-| Analytics back | ✗ | Not its focus → use native analytics APIs |
-| Comments | ✗ | Not exposed → use native APIs |
-| Integrations | ✅ | n8n + Make templates; community MCP server(s) for Claude Code |
+| Public REST API | ✅ | Base `https://backend.blotato.com/v2`; header `blotato-api-key`; verify with `GET /users/me` |
+| Platforms (9) | ✅ | Instagram, YouTube, TikTok, Facebook, X/Twitter, LinkedIn, Pinterest, Threads, Bluesky |
+| Media | ✅ | Public URL in `mediaUrls` (no upload), or `POST /v2/media` (host-by-URL), or `POST /v2/media/uploads` (presigned) |
+| Scheduling | ✅ | Top-level `scheduledTime` (ISO-8601+offset) or `useNextFreeSlot`; nesting them in `post` = ignored |
+| Per-platform options | ✅ | TikTok: `privacyLevel`, `disabledComments/Duet/Stitch`, `isAiGenerated`… · YouTube: `title`, `privacyStatus`, `shouldNotifySubscribers` |
+| Content rule | ✅ | `content.platform` must equal `target.targetType`; `accountId` from `GET /v2/users/me/accounts` |
+| Plan required | ✅ | **API included on every paid plan** (Starter ~$29/mo, 7-day trial); no separate add-on |
+| Analytics back | ✗ | None (on roadmap) → use native analytics APIs |
+| Comments | ✗ | No comment/reply endpoint found |
+| Integrations | ✅ | **Hosted MCP** `https://mcp.blotato.com/mcp` · official n8n (`@blotato/n8n-nodes-blotato`) · Make · (Zapier "coming soon") |
+| ⚠️ confirm | — | Media size (200MB vs 1GB) and Creator/Agency exact pricing reported inconsistently |
 
 ---
 
@@ -28,12 +28,16 @@ sources are behind login or change often. Native-platform and Claude-Code facts 
 
 | Item | Status | Detail |
 |---|---|---|
-| Consumer app (`higgsfield.ai`) | ✅ | AI images ("Soul" model), image/text→video, camera & motion presets |
-| Official Cloud API | ✅ | "Higgsfield Cloud" — programmatic generation via API key, credit-billed |
-| Pattern | ✅ | Async: submit job → poll → output URL(s) |
-| Exact base URL / endpoints / credit costs | ⚠️ confirm | From logged-in Higgsfield Cloud dashboard |
-| Fallback APIs | ✅ | fal.ai, Kie.ai, PiAPI, Replicate host comparable image/video models |
-| Claude native gen | ✗ | Anthropic API **cannot** generate images/video — external model mandatory |
+| Official Cloud API | ✅ | Base `https://platform.higgsfield.ai`; auth `Authorization: Key KEY_ID:KEY_SECRET` |
+| Keys / dashboard | ✅ | `cloud.higgsfield.ai/api-keys` |
+| SDKs | ✅ | Python `higgsfield-client`, Node `higgsfield-js`, CLI |
+| Pattern | ✅ | Async `submit`/`subscribe` → poll `/requests/{id}/status` or `webhook_url` → `images[].url` / `video`; failed jobs refund credits |
+| Models | ✅ | Soul/Soul 2.0 + Soul ID (image), DoP (`/v1/image2video/dop`), Speak (`/v1/speak/higgsfield`); routes to Sora2/Veo/Kling/Flux |
+| Output | ⚠️ | ~4K image; video 5/10s at 480/720/1080p (length/res from resellers — verify) |
+| Billing | ✅ | Credit-based (same as platform; no per-call price sheet). Soul image ≈ 0.25 credits |
+| MCP | ✅ | Official `higgsfield.ai/mcp` + community MCP servers |
+| Per-call fallbacks | ✅ | **Segmind** (~$0.12/img, ~$0.86/video), **WaveSpeedAI**. ✗ NOT on fal.ai/Replicate/PiAPI/Kie |
+| Claude native gen | ✗ | Anthropic API cannot generate images/video — external model mandatory |
 
 ---
 
@@ -41,25 +45,26 @@ sources are behind login or change often. Native-platform and Claude-Code facts 
 
 | Capability | Status | Detail |
 |---|---|---|
-| Publish image / carousel / **Reels** | ✅ | Content Publishing API; **Business/Creator** account + linked Page |
-| Publish **Stories** | ✅ | Supported for Business accounts |
-| **Rate limit** | ⚠️ | ~**25 API-published posts / 24h** per account |
-| Insights / analytics | ✅ | Reach, impressions, engagement, saves, etc. |
+| Publish image / carousel / **Reels** / **Stories** | ✅ | Two-step: `POST /{ig-user-id}/media` → `/media_publish`; **professional** (Business/Creator) account |
+| **Rate limit** | ⚠️ | **~50 API posts / 24h** (rolling; carousels = 1). *Old "25" is outdated; some sources say 100.* Check `content_publishing_limit` live |
+| Insights / analytics | ✅ | `/{ig-media-id}/insights`, `/{ig-user-id}/insights`; perm `instagram_manage_insights` (some metrics need ≥100 followers) |
 | Comments read/reply/hide/delete | ✅ | `instagram_manage_comments` |
-| Auth | — | Meta app + tokens; **App Review** for `instagram_content_publish`, `instagram_manage_comments` |
+| Hashtag search | ⚠️ | `ig_hashtag_search` → top/recent media; **max 30 hashtags / 7 days**; needs *Public Content Access* review |
+| Auth | — | Meta app + OAuth; **App Review** (screencast per permission) for publish/comments/insights |
 
 ---
 
-## YouTube (Data API v3 + Analytics API)
+## YouTube (Data API v3 + Analytics/Reporting API)
 
 | Capability | Status | Detail |
 |---|---|---|
-| Upload video / **Shorts** | ✅ | `videos.insert` (resumable upload) |
-| **Quota cost** | ⚠️ | ~**1600 units** per upload |
-| **Daily quota** | ⚠️ | **10,000 units/day** default ≈ **~6 uploads/day** → request increase for volume |
-| Comments read/post | ✅ | `commentThreads.insert`, `comments.insert` |
-| Analytics | ✅ | **YouTube Analytics & Reporting API** |
-| Auth | — | OAuth 2.0; scopes incl. `youtube.upload`, `youtube.force-ssl` |
+| Upload video / **Shorts** | ✅ | `videos.insert` (Shorts inferred from aspect/length, no separate endpoint); scope `youtube.upload` |
+| **Quota cost** | ✅ | **~100 units** per upload **since 2025-12-04** (was ~1600) — verify on Quota Calculator |
+| **Daily quota** | ✅ | **10,000 units/day** default → **~100 uploads/day** (was ~6). All requests consume quota |
+| Comments read/post | ✅ | `commentThreads.insert` / `comments.insert` (write ~50 units); scope `youtube.force-ssl` |
+| Analytics | ✅ | **YouTube Analytics API** (queries) + **Reporting API** (bulk CSV) |
+| Trend pulls | ✅ | `videos.list?chart=mostPopular` = **1 unit**; `search.list` = 100 |
+| Auth | — | Google Cloud + OAuth verification; production needs API services audit |
 
 ---
 
@@ -67,11 +72,12 @@ sources are behind login or change often. Native-platform and Claude-Code facts 
 
 | Capability | Status | Detail |
 |---|---|---|
-| Publish video / photo | ✅ | Content Posting API: **Direct Post** (publishes) or **Upload** (draft in inbox) |
-| **Public posting** | ⚠️ | **Unaudited apps → `SELF_ONLY`/private only**; pass TikTok **audit** for public |
-| Analytics | ⚠️ | Limited; richer metrics need Business account / restricted Research API |
-| **Post comments** | ✗ | **No public API to post comments** |
-| Auth | — | OAuth 2.0; scopes `video.publish`, `video.upload`; app review/audit |
+| Publish video / photo | ✅ | Content Posting API: **Direct Post** (publishes) or **Upload** (to inbox draft); scopes `video.publish` / `video.upload` |
+| **Public posting** | ⚠️ | **Unaudited → `SELF_ONLY` only**, **≤5 posting users / 24h**, accounts private at post time. Pass **audit** for public |
+| Rate limits | ⚠️ | ~6 req/min (publish/status), ~20 req/min (creator-info); ~15 posts/creator/day (approx, unpublished) |
+| Analytics | ✗ for us | Display API = read-only public metadata; real analytics only via researcher-gated Research API / Business APIs |
+| **Post comments** | ✗ | No comment-posting API; comment *reading* only via Research API (approved researchers) |
+| Auth | — | TikTok app + Login Kit (OAuth); product approval + **client audit** for public posting; domain verification for PULL_FROM_URL |
 
 ---
 
@@ -79,12 +85,12 @@ sources are behind login or change often. Native-platform and Claude-Code facts 
 
 | Source | Access | ToS |
 |---|---|---|
-| YouTube Data API (`search`, `mostPopular`) | ✅ Official | ✅ within quota |
+| YouTube Data API (`mostPopular` 1u / `search` 100u) | ✅ Official | ✅ within quota |
+| Instagram Hashtag Search (30/7d, gated) | ⚠️ Official, gated | ✅ within limits |
 | Google Trends (`pytrends`) | ⚠️ Unofficial | grey |
-| TikTok Creative Center | ⚠️ Web UI; programmatic = scrape/3rd-party | grey |
-| Instagram Hashtag Search API | ⚠️ Restricted, rate-limited | ✅ within limits |
-| Apify actors (TikTok/IG/YT scrapers) | ⚠️ 3rd-party paid | **ToS-sensitive** |
-| Ensemble Data / RapidAPI | ⚠️ 3rd-party paid | unofficial |
+| TikTok Creative Center | ✗ No API (web only) | scraping **banned** |
+| TikTok Research/Commercial API | ✗ Researchers only | n/a for commercial |
+| Apify / Ensemble / RapidAPI | ⚠️ 3rd-party paid | **ToS-sensitive**; "compliant" labels unverified |
 
 ---
 
@@ -92,13 +98,11 @@ sources are behind login or change often. Native-platform and Claude-Code facts 
 
 | Capability | Status | Detail |
 |---|---|---|
-| Connect to external tools | ✅ | **MCP servers** (`.mcp.json`/settings) + HTTP tool-use |
-| Headless / scriptable | ✅ | `claude -p "..."` print mode for cron |
-| Build custom agents | ✅ | **Claude Agent SDK** (TypeScript + Python) |
-| Scheduled / autonomous | ✅ | cron + headless, GitHub Actions `schedule:`, Claude Code on the web |
-| Hooks / slash commands / skills | ✅ | SessionStart hooks; custom commands for repeatable steps |
-| Native image/video gen | ✗ | Must call an external model (Higgsfield/fal/etc.) |
-
-> Verify the ⚠️-flagged Blotato/Higgsfield specifics against their live docs before building. The
-> adapter pattern in [scripts/](../scripts/) keeps those changes localized.
+| Connect to external tools | ✅ | **MCP** via `.mcp.json` (`claude mcp add --transport http/stdio …`) + Messages API tool use |
+| Headless / scriptable | ✅ | `claude -p` (`--output-format json`, `--json-schema`, `--permission-mode`, `--bare` for CI) |
+| Build custom agents | ✅ | **Claude Agent SDK** (Python `claude-agent-sdk`, TS `@anthropic-ai/claude-agent-sdk`) |
+| Scheduled / autonomous | ✅ | cron + `-p`; GitHub Actions `anthropics/claude-code-action` (`on: schedule:`); **Claude Code on the web Routines** (scheduled/API/GitHub triggers) |
+| Hooks / skills | ✅ | Hooks before/after events; skills = `/name` (interactive only — in `-p`, pass task as prompt) |
+| Native image/video gen | ✗ | Must call an external model (Higgsfield/Segmind/etc.) |
+| ⚠️ Billing | — | From **2026-06-15**, Agent SDK / `claude -p` on subscription draws a separate credit pool — budget an API key for volume |
 </content>

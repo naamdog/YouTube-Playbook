@@ -6,7 +6,9 @@ A pragmatic order to build this without getting a TEFL Heaven account banned on 
 - [ ] Pick the **state store**: start with a Google Sheet or SQLite (`content/calendar.*`).
 - [ ] Copy `.env.example` → `.env`; fill keys you have. Set up a secrets store.
 - [ ] **Build vs buy** for posting: start with **Blotato** (fastest); keep native APIs for Phase 4.
-- [ ] Wire one MCP server (Blotato community MCP) into Claude Code (`config/mcp.example.json`).
+      Blotato's API is included on every paid plan (Starter ~$29/mo) — no separate add-on.
+- [ ] Wire the official MCP servers into Claude Code (`config/mcp.example.json`): Blotato hosted MCP
+      (`mcp.blotato.com/mcp`) + Higgsfield MCP (`higgsfield.ai/mcp`).
 
 ## Phase 1 — Content brain only (1 day) — *zero account risk*
 - [ ] Implement `/trends` (YouTube Data API first).

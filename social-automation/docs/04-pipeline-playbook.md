@@ -44,14 +44,16 @@ The runbook. Each stage = what triggers it, what it reads, what it does, what it
 - **Does:** **Blotato** path → host media → create post with per-platform options (IG reels; TikTok
   privacy/disclosure; YouTube title/privacy/notify). **Native** path → IG Content Publishing,
   YouTube `videos.insert`, TikTok Content Posting (Direct Post).
-- **Writes:** `post_id`/permalink per platform; `status=posted`. ⚠️ respect 25/day (IG), ~6/day (YT),
-  TikTok audit. See [scripts/publish.md](../scripts/publish.md).
+- **Writes:** `post_id`/permalink per platform; `status=posted`. ⚠️ respect ~50/24h (IG), ~100/day
+  (YT, post-2025-12-04 quota), TikTok SELF_ONLY + 5 users/24h until audited. See
+  [scripts/publish.md](../scripts/publish.md).
 
 ## Stage 7 — MEASURE  (`/report`)
 - **Trigger:** ~24h and ~7d after posting.
-- **Does:** pull **IG Insights**, **YouTube Analytics**, **TikTok analytics** → join to the row →
-  Claude writes a performance summary + concrete learnings ("destination Reels beat talking-head by
-  2.1× retention").
+- **Does:** pull **IG Insights** and **YouTube Analytics** → join to the row → Claude writes a
+  performance summary + concrete learnings ("destination Reels beat talking-head by 2.1× retention").
+  **TikTok has no commercial analytics API** — capture limited Display-API public metadata or pull
+  manually.
 - **Writes:** metrics + `learnings`; `status=measured`. **Feeds Stage 1.**
 - See [scripts/report.md](../scripts/report.md).
 

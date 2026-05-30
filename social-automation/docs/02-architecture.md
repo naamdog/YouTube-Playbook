@@ -16,10 +16,10 @@ calls, over **MCP** (Model Context Protocol) or plain HTTP.
             ▼                                      ▼                                   ▼
    ┌──────────────────┐              ┌──────────────────────┐            ┌──────────────────────┐
    │ TREND / RESEARCH │              │   MEDIA GENERATION    │            │   POSTING LAYER       │
-   │ • YouTube Data   │              │ • Higgsfield Cloud API│            │ • Blotato API (≈9)    │
-   │ • TikTok CC*     │              │   (image + video)     │            │   host media → post   │
-   │ • Apify actors*  │              │ • fal.ai / Kie.ai /   │            │   scheduledTime       │
-   │ • Google Trends* │              │   PiAPI (fallback)    │            │  (or native APIs)     │
+   │ • YouTube Data ✅ │              │ • Higgsfield Cloud API│            │ • Blotato API (9)     │
+   │ • IG hashtag ⚠️   │              │   Soul (img) DoP (vid)│            │   host media → post   │
+   │ • TikTok scrape*  │              │ • Segmind/WaveSpeed   │            │   scheduledTime       │
+   │ • Google Trends*  │              │   (fallback)          │            │  (or native APIs)     │
    └────────┬─────────┘              └───────────┬───────────┘            └──────────┬───────────┘
             │                                    │                                   │
             │                                    ▼                                   │
@@ -59,8 +59,9 @@ calls, over **MCP** (Model Context Protocol) or plain HTTP.
 ## How Claude Code connects to tools (3 layers)
 
 1. **MCP servers** — cleanest. Configure in `.mcp.json` / settings
-   ([config/mcp.example.json](../config/mcp.example.json)). Blotato has community MCP servers; you
-   write a tiny one for Higgsfield (or use HTTP tool-use).
+   ([config/mcp.example.json](../config/mcp.example.json)). **Both core tools already ship MCP
+   servers:** Blotato has an official hosted MCP (`https://mcp.blotato.com/mcp`) and Higgsfield has an
+   official MCP (`higgsfield.ai/mcp`) plus community servers — so little custom glue is needed.
 2. **HTTP / tool-use** — for anything without an MCP server, Claude calls the REST API directly
    (Higgsfield Cloud, YouTube Data API, IG Graph API, Apify).
 3. **Shell scripts** — Claude Code runs `scripts/*` wrappers; handy for cron jobs.
@@ -72,8 +73,8 @@ calls, over **MCP** (Model Context Protocol) or plain HTTP.
 | **Interactive** | Building, supervising, approving | normal Claude Code session |
 | **Headless** (`claude -p "..."`) | A single scheduled task | cron / systemd timer |
 | **Agent SDK** (TS/Python) | A long-running custom agent | your own service |
-| **GitHub Actions** (`schedule:`) | Free-ish daily/weekly runs | `.github/workflows/*.yml` |
-| **Claude Code on the web** | Triggered / remote runs | code.claude.com |
+| **GitHub Actions** (`schedule:`) | Free-ish daily/weekly runs | `anthropics/claude-code-action`, `on: schedule:` |
+| **Claude Code on the web — Routines** | Scheduled/API/GitHub-triggered cloud runs | code.claude.com (no laptop needed) |
 
 Recommended: **human-in-the-loop interactive for publish/comment** at first; graduate low-risk
 stages (generate, store, analytics-pull) to headless cron once trusted.
