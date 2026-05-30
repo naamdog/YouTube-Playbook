@@ -160,4 +160,3 @@ and replies to comments on IG/YT. The non-negotiables are **TikTok-shaped**: the
 audit, no TikTok comment API, no TikTok commercial analytics, and no TikTok trend API. Instagram
 needs Meta App Review; YouTube is now the easy platform. And Claude always needs an external model
 (Higgsfield) for media. Design around those and the rest is engineering.
-</content>

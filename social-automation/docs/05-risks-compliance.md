@@ -55,4 +55,3 @@ These violate platform policy and, in places, the law — out of scope by design
 2. **Phase B:** auto-publish *scheduled* posts a human approved in advance; comments still manual.
 3. **Phase C:** auto-reply to comments from an approved template set on IG/YT only, with daily caps.
 4. Never remove the kill switch or the audit log.
-</content>

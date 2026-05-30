@@ -3,6 +3,9 @@
 > A feasibility deep-dive for **TEFL Heaven**: can Claude Code automate the *whole* social-media
 > content lifecycle across **Instagram, YouTube, and TikTok**?
 
+> 🟢 **New here / want the plain-English version?** Read **[START-HERE.md](START-HERE.md)** first —
+> the whole thing explained simply, no jargon. The docs below are the detailed/technical versions.
+
 **The question:** plan content, research best trends/posts, go prompt → image/video (using
 **Higgsfield**), store the media, schedule posts, post them, measure each post's success, and
 comment — with **Blotato** as the posting layer. Is there a way to do all of it?
@@ -28,9 +31,12 @@ you asked about maps to a real, working API. The ceiling is set by the **platfor
 After verification, **TikTok is the real bottleneck**, Instagram needs approval, and **YouTube turned
 out to be the easy one**:
 
-1. **TikTok audit gate** — until your TikTok app passes audit, every API post is forced to
-   `SELF_ONLY` (private), and unaudited apps are capped at **5 posting users / 24h**. No public
-   TikToks via API before audit (~2–4 weeks, community estimate).
+1. **TikTok audit gate — but Blotato already cleared it for you.** If *you* build your own TikTok
+   app, every API post is forced to `SELF_ONLY` (private) and capped at 5 users/24h until *your* app
+   passes TikTok's audit (~2–4 weeks). **Posting through Blotato skips this entirely** — Blotato's
+   app is already audited, so your posts can go public immediately (just set
+   `privacyLevel: "PUBLIC_TO_EVERYONE"`). The audit pain only applies on the build-your-own (native
+   API) path.
 2. **TikTok is API-poor for the rest** — **no comment-posting API at all**, and **no commercial
    analytics API** (the Display API is read-only public metadata; real analytics is the
    researcher-only Research API). Also no first-party trend API.
@@ -86,4 +92,3 @@ only after the audit. The slow parts are platform approvals, not Claude.
 > `claude -p` headless mode — pass the task as a prompt instead; (2) from **2026-06-15**, Agent SDK /
 > `claude -p` usage on subscription plans draws from a separate credit pool — budget an API key for
 > high-volume runs.
-</content>

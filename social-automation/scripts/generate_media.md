@@ -85,4 +85,3 @@ sets `stored_url`, `status="stored"`.
 > Model slugs above (e.g. `soul/text-to-image`, `/v1/image2video/dop`, `/v1/speak/higgsfield`) follow
 > the SDK examples; confirm exact slugs/params against the installed SDK source, which is the most
 > reliable spec (public REST docs are thin).
-</content>

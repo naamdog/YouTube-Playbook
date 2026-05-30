@@ -73,7 +73,8 @@ fetch; verify those live at integration time.
 | Capability | Status | Detail |
 |---|---|---|
 | Publish video / photo | ✅ | Content Posting API: **Direct Post** (publishes) or **Upload** (to inbox draft); scopes `video.publish` / `video.upload` |
-| **Public posting** | ⚠️ | **Unaudited → `SELF_ONLY` only**, **≤5 posting users / 24h**, accounts private at post time. Pass **audit** for public |
+| **Public posting (native path)** | ⚠️ | **Unaudited → `SELF_ONLY` only**, **≤5 posting users / 24h**. Pass **audit** for public |
+| **Public posting (via Blotato)** | ✅ | No audit needed — Blotato's app is already audited; set `privacyLevel: PUBLIC_TO_EVERYONE` |
 | Rate limits | ⚠️ | ~6 req/min (publish/status), ~20 req/min (creator-info); ~15 posts/creator/day (approx, unpublished) |
 | Analytics | ✗ for us | Display API = read-only public metadata; real analytics only via researcher-gated Research API / Business APIs |
 | **Post comments** | ✗ | No comment-posting API; comment *reading* only via Research API (approved researchers) |
@@ -105,4 +106,3 @@ fetch; verify those live at integration time.
 | Hooks / skills | ✅ | Hooks before/after events; skills = `/name` (interactive only — in `-p`, pass task as prompt) |
 | Native image/video gen | ✗ | Must call an external model (Higgsfield/Segmind/etc.) |
 | ⚠️ Billing | — | From **2026-06-15**, Agent SDK / `claude -p` on subscription draws a separate credit pool — budget an API key for volume |
-</content>

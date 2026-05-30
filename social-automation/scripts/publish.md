@@ -76,4 +76,3 @@ for row in store.where(status="scheduled"):
   `isAiGenerated`.
 
 > Enforce `DAILY_POST_CAP_*` from `.env` before every call — don't rely on receiving a 429.
-</content>
