@@ -18,14 +18,15 @@ The runbook. Each stage = what triggers it, what it reads, what it does, what it
 ## Stage 2 — RESEARCH TRENDS  (`/trends`)
 - **Trigger:** before Stage 1 (or nightly).
 - **Reads:** niche keywords (e.g. "teach English abroad", "TEFL Vietnam"), competitor handles.
-- **Does:** pull YouTube `search`/`mostPopular`, TikTok Creative Center / Apify trend data, Google
+- **Does:** pull YouTube `mostPopular` (1 quota unit) / `search`, Apify TikTok trend data, Google
   Trends → Claude clusters into "what's working now: formats, hooks, sounds, post times."
+  (TikTok Creative Center has no API; Apify scraping is ToS-sensitive.)
 - **Writes:** a `trend_digest` artifact Stage 1 consumes. **⚠️ scraping = ToS risk; prefer APIs.**
 
 ## Stage 3 — GENERATE MEDIA  (`/generate`)
 - **Trigger:** rows `status=planned` with a media prompt.
 - **Does:** call **Higgsfield Cloud API** (image/video) via the adapter → submit → poll → output URL.
-  Fallback to fal.ai/Kie.ai/PiAPI as needed.
+  Fallback to Segmind / WaveSpeedAI as needed.
 - **Writes:** `media_url`, `media_type`, `gen_model`, `gen_cost`; `status=media_ready`.
 - See [scripts/generate_media.md](../scripts/generate_media.md).
 

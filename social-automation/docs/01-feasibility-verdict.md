@@ -113,12 +113,15 @@ Claude can compute *optimal* post times per platform from past metrics and write
   `blotato-api-key`. Flow: media (URL or upload) → `POST /v2/posts` with per-platform `target`
   options (TikTok privacy/disclosure/duet/stitch; YouTube title/privacy/notify). **API is included on
   every paid plan** (Starter ~$29/mo; no separate API add-on). **Official hosted MCP** at
-  `https://mcp.blotato.com/mcp` + official **n8n** and **Make** nodes.
-- **Build: native APIs** — full control, no tool subscription, but you implement OAuth + App
-  Review/audit per platform.
+  `https://mcp.blotato.com/mcp` + official **n8n** and **Make** nodes. **Key benefit: Blotato's apps
+  are already approved/audited on every platform — so you skip TikTok's audit, Meta's App Review, and
+  Google's audit, and your TikToks can go public immediately (`privacyLevel: PUBLIC_TO_EVERYONE`).**
+- **Build: native APIs** — full control, no tool subscription, but *you* implement OAuth + App
+  Review/audit per platform (the slow path).
 
-**Platform limits apply either way:** IG ~50 posts/24h (rolling); YouTube ~100 uploads/day (default
-quota); TikTok SELF_ONLY + 5 users/24h until audited.
+**What still applies via Blotato:** everyday per-account limits (IG ~50 posts/24h, YouTube ~100
+uploads/day, TikTok ~15/day). **What you escape via Blotato:** the one-time audit/review gates —
+including TikTok's `SELF_ONLY` trap, which only catches people building their own app.
 
 ---
 
