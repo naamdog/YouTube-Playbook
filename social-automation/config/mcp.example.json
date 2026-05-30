@@ -1,0 +1,28 @@
+{
+  "//": "Claude Code MCP server config. Copy relevant entries into your project .mcp.json or Claude Code settings. Replace ${VARS} via your .env / shell env. See ../docs/02-architecture.md.",
+  "mcpServers": {
+    "blotato": {
+      "//": "Community Blotato MCP server. Exposes media-upload + post-to-social (≈9 platforms) with scheduledTime support. Confirm package/repo name and tool names against the current community server.",
+      "command": "npx",
+      "args": ["-y", "blotato-mcp"],
+      "env": {
+        "BLOTATO_API_KEY": "${BLOTATO_API_KEY}"
+      }
+    },
+    "higgsfield": {
+      "//": "Custom MCP wrapper around the Higgsfield Cloud API. Confirm exact endpoints from your dashboard, then implement (see ../scripts/generate_media.md). Or skip MCP and let Claude call the REST API via HTTP tool-use.",
+      "command": "node",
+      "args": ["scripts/higgsfield-mcp/index.js"],
+      "env": {
+        "HIGGSFIELD_API_KEY": "${HIGGSFIELD_API_KEY}",
+        "HIGGSFIELD_API_BASE": "${HIGGSFIELD_API_BASE}"
+      }
+    },
+    "filesystem": {
+      "//": "Optional: scoped read/write to the content store + media cache.",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./content", "./media-cache"]
+    }
+  }
+}
+</content>
