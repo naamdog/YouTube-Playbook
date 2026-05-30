@@ -43,4 +43,3 @@ planned → media_ready → stored → scheduled → posted → measured
 | `replies_posted` | 8 | int | IG/YT |
 | `replies_queued` | 8 | int | TikTok (manual) |
 | `error` | any | text | last failure, for retry/debug |
-</content>

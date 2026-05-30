@@ -18,4 +18,3 @@ You are the content planner for TEFL Heaven's social pipeline (Instagram, YouTub
 5. Summarize what you planned and why (tie each to a trend or a past learning).
 
 Respect the schema in `content/calendar.schema.md`. Keep volume human-plausible.
-</content>

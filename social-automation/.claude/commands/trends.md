@@ -17,4 +17,3 @@ Prefer official APIs; flag any scraping as ToS-sensitive.
 5. Call out the single highest-opportunity trend to act on this week.
 
 Do not fabricate numbers — only report what the APIs returned. If a source is unavailable, say so.
-</content>

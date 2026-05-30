@@ -68,4 +68,3 @@ volatile numbers are flagged **⚠️ verify live** in the docs.
 
 > Note: `docs.claude.com` / `docs.anthropic.com` now 301-redirect to **code.claude.com** (Claude Code)
 > and **platform.claude.com** (API) — both first-party Anthropic.
-</content>

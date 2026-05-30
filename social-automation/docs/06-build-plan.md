@@ -52,4 +52,3 @@ A pragmatic order to build this without getting a TEFL Heaven account banned on 
 
 > Realistic effort to a supervised MVP across IG + YouTube: **~1 week**. Add TikTok public posting
 > after the audit. Full closed-loop autonomy: a few weeks, mostly platform approvals — not Claude.
-</content>

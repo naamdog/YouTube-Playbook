@@ -12,4 +12,3 @@ Engage with comments responsibly. Spam = bans, so default to drafting, not blast
    to the human queue (no comment-posting API).
 6. Flag anything sensitive (complaints, legal, refunds, PR risk) for a human instead of auto-replying.
 7. Report: replies posted (per platform), replies queued, anything escalated.
-</content>

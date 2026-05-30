@@ -43,4 +43,3 @@ for row in store.where(status="posted"):
         elif c.platform == "youtube":   yt_reply(c.id, reply); sent += 1
         else:                           queue_for_review(row, c, reply)   # tiktok → manual
 ```
-</content>

@@ -119,4 +119,3 @@ Always keep two safety switches on (they're built in):
   [`01-feasibility-verdict.md`](docs/01-feasibility-verdict.md)).
 - Want the exact step-by-step build order? → [`docs/06-build-plan.md`](docs/06-build-plan.md).
 - Want to know what's allowed vs risky? → [`docs/05-risks-compliance.md`](docs/05-risks-compliance.md).
-</content>

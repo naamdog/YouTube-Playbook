@@ -16,4 +16,3 @@ Publish content that is ready and approved. SAFETY FIRST.
 5. Set AI-content disclosure flags. For TikTok, remember: unaudited app ⇒ SELF_ONLY only.
 6. Write `post_id_*` per platform; set `status=posted`. Log every action to the audit log.
 7. Report what was posted, what was skipped (and why), and remaining cap headroom.
-</content>

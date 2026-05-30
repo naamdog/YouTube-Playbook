@@ -14,4 +14,3 @@ Measure posted content and close the loop.
 6. Report a short performance summary (winners, losers, the one change to make next week).
 
 Only use real returned metrics. Never invent numbers.
-</content>

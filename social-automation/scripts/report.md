@@ -41,4 +41,3 @@ for row in store.where(status="posted"):
 #    retention & engagement? Output 3 concrete rules for next week's /plan."
 # Write the response to row.learnings — this closes the loop.
 ```
-</content>

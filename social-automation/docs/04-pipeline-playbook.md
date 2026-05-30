@@ -84,4 +84,3 @@ claude -p "/publish --due"     # post anything scheduled for now (human-approved
 claude -p "/report --due"      # pull metrics for posts at 24h/7d
 claude -p "/engage --review"   # draft replies; hold for approval
 ```
-</content>

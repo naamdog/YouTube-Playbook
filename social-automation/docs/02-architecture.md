@@ -78,4 +78,3 @@ calls, over **MCP** (Model Context Protocol) or plain HTTP.
 
 Recommended: **human-in-the-loop interactive for publish/comment** at first; graduate low-risk
 stages (generate, store, analytics-pull) to headless cron once trusted.
-</content>

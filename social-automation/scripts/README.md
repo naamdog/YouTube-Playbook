@@ -17,4 +17,3 @@ Stages 1 (`/plan`) and 2 (`/trends`) are driven from Claude Code slash commands 
 
 > Examples use a Python-ish / `curl` style for clarity. Port to whatever you run the pipeline in
 > (Python, Node, or pure Claude Agent SDK tool calls).
-</content>
