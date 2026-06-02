@@ -1,0 +1,26 @@
+{
+  "//": "Claude Code MCP config. Copy relevant entries into your project .mcp.json (or run `claude mcp add ...`). Replace ${VARS} via your .env / shell env. See ../docs/02-architecture.md.",
+  "mcpServers": {
+    "blotato": {
+      "//": "Official Blotato hosted MCP. Posts to 9 platforms with scheduledTime; ~16 tools (blotato_create_post, blotato_list_accounts, upload media, blotato_create_visual...). Requires a paid Blotato plan.",
+      "type": "http",
+      "url": "https://mcp.blotato.com/mcp",
+      "headers": {
+        "blotato-api-key": "${BLOTATO_API_KEY}"
+      }
+    },
+    "higgsfield": {
+      "//": "Official Higgsfield MCP — drives Soul (image), DoP (video), Speak, etc. using your Higgsfield credits. If the hosted form differs, fall back to the community servers (e.g. Hikhakk/higgsfield-mcp-unified) or HTTP tool-use against platform.higgsfield.ai. Confirm the current MCP URL/transport at higgsfield.ai/mcp.",
+      "type": "http",
+      "url": "https://higgsfield.ai/mcp",
+      "headers": {
+        "Authorization": "Key ${HIGGSFIELD_API_KEY_ID}:${HIGGSFIELD_API_KEY_SECRET}"
+      }
+    },
+    "filesystem": {
+      "//": "Optional: scoped read/write to the content store + media cache.",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./content", "./media-cache"]
+    }
+  }
+}

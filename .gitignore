@@ -1,0 +1,16 @@
+# secrets
+.env
+.env.*
+!.env.example
+secrets/
+
+# caches / build
+media-cache/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+*.local.json
+
+# python venv (local testing only)
+.venv/

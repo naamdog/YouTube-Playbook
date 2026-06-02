@@ -1,0 +1,16 @@
+{
+  "_comment": "Project MCP servers for the social-automation pipeline. Safe to commit: no secrets inline. Higgsfield uses OAuth (run /mcp in Claude Code to log in). Blotato reads BLOTATO_API_KEY from your environment. See social-automation/config/mcp.example.json and social-automation/.env.example. NOTE: this cloud sandbox network blocks higgsfield.ai, so these connect only on a machine whose network policy allows them (e.g. your own).",
+  "mcpServers": {
+    "higgsfield": {
+      "type": "http",
+      "url": "https://mcp.higgsfield.ai/mcp"
+    },
+    "blotato": {
+      "type": "http",
+      "url": "https://mcp.blotato.com/mcp",
+      "headers": {
+        "blotato-api-key": "${BLOTATO_API_KEY}"
+      }
+    }
+  }
+}
